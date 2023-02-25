@@ -1,0 +1,27 @@
+.header{
+     -fx-background-color: #1795DD;
+     -fx-text-fill: white;
+     -fx-prefHeight: 165.0;
+}
+.headerLabel{
+     -fx-text-fill: white;
+}
+
+.button{
+    -fx-text-fill: white;
+    -fx-background-color: #1795DD;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+    -fx-pref-height: 140px;
+    -fx-pref-width: 180px;
+    -fx-font-size:20
+}
+
+.button:hover{
+    -fx-background-color: #75c3f0
+}
+
+.button:pressed{
+     -fx-background-color: #628193DD;
+}

@@ -1,0 +1,52 @@
+package com.ponomic.hospitalmanagementsystem.model;
+
+import java.time.LocalDate;
+
+public class Patient {
+
+    private String healthNumber;
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private PatientType patientType;
+
+    public Patient(String healthNumber, String firstName, String lastName, LocalDate dateOfBirth, PatientType patientType) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.patientType = patientType;
+        this.healthNumber = healthNumber;
+    }
+
+    public String getHealthNumber() {
+        return healthNumber;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public PatientType getPatientType() {
+        return this.patientType;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPatientType(PatientType patientType) {
+        this.patientType = patientType;
+    }
+}

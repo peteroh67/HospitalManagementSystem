@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"  fx:controller="com.ponomic.hospitalmanagementsystem.controllers.PatientController"
+            stylesheets="@../css/styles.css">
+    <top>
+        <Pane styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox>
+                <padding>
+                    <Insets top="20" bottom="30" left="80"/>
+                </padding>
+                <Label text="HospitalFX" styleClass="headerLabel">
+                    <font>
+                        <Font size="50.0" />
+                    </font>
+                </Label>
+                <Label text="Health &amp; Care" styleClass="headerLabel">
+                    <padding>
+                        <Insets left="5"/>
+                    </padding>
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+            </VBox>
+
+        </Pane>
+    </top>
+    <center>
+
+    </center>
+</BorderPane>
