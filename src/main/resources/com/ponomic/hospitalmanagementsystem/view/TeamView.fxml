@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"  fx:controller="com.ponomic.hospitalmanagementsystem.controllers.HelpController"
-            stylesheets="@../css/styles.css">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"  fx:controller="com.ponomic.hospitalmanagementsystem.controllers.TeamController"
+            stylesheets="@../styles/styles.css">
 <top>
     <Pane styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <VBox>
@@ -34,28 +30,6 @@
     </Pane>
 </top>
 <center>
-    <VBox>
-        <HBox>
-            <Button text="Dashboard" fx:id="btnDashboard" onAction="#ButtonClick" styleClass="button" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <TextArea text="The dashboard provides lorem ipsum bloopity bloo yadadadada here we are now lets go again"/>
-        </HBox>
-        <HBox>
-
-        </HBox>
-        <HBox>
-
-        </HBox>
-        <HBox>
-
-        </HBox>
-        <HBox>
-
-        </HBox>
-        <HBox>
-
-        </HBox>
-    </VBox>
 
 </center>
 </BorderPane>
-

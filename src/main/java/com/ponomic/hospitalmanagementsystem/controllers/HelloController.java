@@ -18,8 +18,6 @@ public class HelloController {
     @FXML
     private Button btnWards;
     @FXML
-    private Button btnTreatments;
-    @FXML
     private Button btnPatients;
     @FXML
     private Button btnTeams;
@@ -32,21 +30,18 @@ public class HelloController {
         String fxmlFilePath = "";
 
         if(event.getSource().equals(btnDashboard)){
-            fxmlFilePath = "com/ponomic/hospitalmanagement/View/HelloView.fxml";
+            fxmlFilePath = "/com/ponomic/hospitalmanagementsystem/view/DashboardView.fxml";
         } else if (event.getSource().equals(btnWards)) {
-            fxmlFilePath = "com/ponomic/hospitalmanagement/View/wards.fxml";
-        } else if (event.getSource().equals(btnTreatments)) {
-            fxmlFilePath = "com/ponomic/hospitalmanagement/View/treatments.fxml";
+            fxmlFilePath = "/com/ponomic/hospitalmanagementsystem/view/AllWardsView.fxml";
         } else if (event.getSource().equals(btnPatients)) {
-            fxmlFilePath = "com/ponomic/hospitalmanagement/View/patients.fxml";
+            fxmlFilePath = "/com/ponomic/hospitalmanagementsystem/view/AllPatientsView.fxml";
         } else if (event.getSource().equals(btnTeams)) {
-            fxmlFilePath = "com/ponomic/hospitalmanagement/View/teams.fxml";
+            fxmlFilePath = "/com/ponomic/hospitalmanagementsystem/view/AllTeamsView.fxml";
         } else if (event.getSource().equals(btnHelp)) {
-            fxmlFilePath = "com/ponomic/hospitalmanagement/View/help.fxml";
+            fxmlFilePath = "/com/ponomic/hospitalmanagementsystem/view/HelpView.fxml";
         }
 
         loadNewWindow(fxmlFilePath, event);
-
     }
 
     private void loadNewWindow(String fxmlFilePath, ActionEvent event) {
@@ -62,7 +57,5 @@ public class HelloController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"  fx:controller="com.ponomic.hospitalmanagementsystem.controllers.TeamController"
-            stylesheets="@../css/styles.css">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.ponomic.hospitalmanagementsystem.controllers.WardController"
+            stylesheets="@../styles/styles.css">
 <top>
     <Pane styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <VBox>
@@ -36,4 +33,9 @@
 <center>
 
 </center>
+
+
+
 </BorderPane>
+
+
