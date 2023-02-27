@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ponomic.hospitalmanagementsystem.controllers.PatientController"
-            stylesheets="@../styles/styles.css">
+<BorderPane stylesheets="@../styles/styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.ponomic.hospitalmanagementsystem.controllers.PatientController">
     <top>
         <Pane styleClass="header">
             <VBox>
                 <padding>
-                    <Insets top="20" bottom="30" left="80"/>
+                    <Insets bottom="30" left="80" top="20" />
                 </padding>
-                <Label text="HospitalFX" styleClass="headerLabel">
+                <Label styleClass="headerLabel" text="HospitalFX">
                     <font>
                         <Font size="50.0" />
                     </font>
                 </Label>
-                <Label text="Health &amp; Care" styleClass="headerLabel">
+                <Label styleClass="headerLabel" text="Health &amp; Care">
                     <padding>
-                        <Insets left="5"/>
+                        <Insets left="5" />
                     </padding>
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Label>
             </VBox>
-
         </Pane>
     </top>
     <center>
-
+        <GridPane hgap="10" vgap="8" alignment="TOP_CENTER">
+            <padding>
+                <Insets topRightBottomLeft="20"/>
+            </padding>
+            <Button text="Admit Patient" fx:id="btnAdmitPatient" onAction="#onButtonClick" styleClass="button" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Button text="View Patients" fx:id="btnViewPatients" onAction="#onButtonClick" styleClass="button" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+        </GridPane>
     </center>
 </BorderPane>

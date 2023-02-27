@@ -1,15 +1,11 @@
 package com.ponomic.hospitalmanagementsystem.controllers;
 
+import com.ponomic.hospitalmanagementsystem.utilities.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class HelloController {
 
@@ -45,17 +41,7 @@ public class HelloController {
     }
 
     private void loadNewWindow(String fxmlFilePath, ActionEvent event) {
-
-        double height= ((Node) event.getSource()).getScene().getHeight();
-        double width= ((Node) event.getSource()).getScene().getWidth();
-
-        try {
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFilePath));
-            stage.setScene(new Scene(root, width, height));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        WindowLoader.loadWindow(fxmlFilePath, stage);
     }
 }
