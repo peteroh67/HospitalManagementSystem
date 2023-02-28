@@ -15,11 +15,10 @@ public class Schema {
     public static final String TABLE_PATIENTS = "patients";
     public static final String COLUMN_PATIENTS_ID = "pk_patient_id";
     public static final String COLUMN_PATIENTS_PATIENT_TYPE = "fk_patients_ type_patient_id";
-    public static final String COLUMN_PATIENTS_HEALTH_NUMBER = "health_number";
-
     public static final String COLUMN_PATIENTS_FIRST_NAME = "first_name";
     public static final String COLUMN_PATIENTS_LAST_NAME = "last_name";
     public static final String COLUMN_PATIENTS_DATE_OF_BIRTH = "date_of_birth";
+    public static final String COLUMN_PATIENTS_TEAM = "fk_team_id";
     public static final int INDEX_PATIENT_ID = 1;
     public static final int INDEX_PATIENT_PATIENT_TYPE = 2;
     public static final int INDEX_PATIENT_FIRST_NAME = 3;
@@ -82,6 +81,7 @@ public class Schema {
     public static final String TABLE_TEAM = "teams";
     public static final String COLUMN_TEAM_ID = "pk_team_id";
     public static final String COLUMN_TEAM_DOCTOR = "fk_doctor_team_id";
+    public static final String COLUMN_TEAM_NAME = "team_name";
     public static final int INDEX_TEAM_ID = 1;
     public static final int INDEX_TEAM_DOCTOR = 2;
 
@@ -112,5 +112,38 @@ public class Schema {
     public static final int ORDER_BY_NONE = 1;
     public static final int ORDER_BY_ASC = 2;
     public static final int ORDER_BY_DESC = 3;
+
+
+    // Queries for PatientDAO
+    public static final String QUERY_READ_ALL_PATIENTS_START =
+            "SELECT " + TABLE_PATIENT_TYPES + "." + COLUMN_PATIENT_TYPES_PATIENT_TYPE + ", " +
+                TABLE_PATIENTS +"." + COLUMN_PATIENTS_FIRST_NAME + ", " +
+                TABLE_PATIENTS + "." + COLUMN_PATIENTS_LAST_NAME + ", " +
+                TABLE_PATIENTS + "." + COLUMN_PATIENTS_DATE_OF_BIRTH +
+                " FROM " + TABLE_PATIENTS +
+                " JOIN " + TABLE_PATIENT_TYPES +
+                    " ON " + TABLE_PATIENTS + "." + COLUMN_PATIENTS_PATIENT_TYPE +
+                    " = " + TABLE_PATIENT_TYPES + "." + COLUMN_PATIENT_TYPES_ID;
+
+    public static final String QUERY_READ_ALL_PATIENTS_VIEW =
+            "SELECT " + TABLE_PATIENT_TYPES + "." + COLUMN_PATIENT_TYPES_PATIENT_TYPE + ", " +
+                    TABLE_PATIENTS +"." + COLUMN_PATIENTS_FIRST_NAME + ", " +
+                    TABLE_PATIENTS + "." + COLUMN_PATIENTS_LAST_NAME + ", " +
+                    TABLE_TEAM + "." + COLUMN_TEAM_NAME + ", " +
+                    TABLE_WARDS + "." + COLUMN_WARDS_NAME +
+                    " FROM " + TABLE_PATIENTS +
+                    " JOIN " + TABLE_PATIENT_TYPES +
+                        " ON " + TABLE_PATIENTS + "." + COLUMN_PATIENTS_PATIENT_TYPE +
+                        " = " + TABLE_PATIENT_TYPES + "." + COLUMN_PATIENT_TYPES_ID +
+                    " JOIN " + TABLE_TEAM +
+                        " ON " + TABLE_PATIENTS + "." + COLUMN_PATIENTS_TEAM +
+                        " = " + TABLE_TEAM +"." + COLUMN_TEAM_ID +
+                    " JOIN " + TABLE_PATIENTS_WARDS_BED +
+                        " ON " + TABLE_PATIENTS + "." + COLUMN_PATIENTS_ID +
+                        " = " + TABLE_PATIENTS_WARDS_BED + "." + COLUMN_PATIENTS_WARDS_BEDS_PATIENT +
+                    " JOIN " + TABLE_WARDS +
+                        " ON " + TABLE_WARDS + "." + COLUMN_WARDS_ID +
+                        " = " + TABLE_PATIENTS_WARDS_BED + "." + COLUMN_PATIENTS_WARDS_BEDS_WARD;
+
 
 }

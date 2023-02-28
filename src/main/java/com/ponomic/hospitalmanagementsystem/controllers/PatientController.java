@@ -1,8 +1,11 @@
 package com.ponomic.hospitalmanagementsystem.controllers;
 
-import com.ponomic.hospitalmanagementsystem.model.Patient;
+import com.ponomic.hospitalmanagementsystem.dtos.DTOAllPatientsView;
 import com.ponomic.hospitalmanagementsystem.services.PatientWardService;
 import com.ponomic.hospitalmanagementsystem.utilities.WindowLoader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -38,7 +41,14 @@ public class PatientController {
     private void displayAllPatients(){
 
         patientWardService = new PatientWardService();
-        patientWardService.getAllPatients();
+        patientWardService.getAllPatientsView();
 
+    }
+    class getAllPatientsViewTask extends Task {
+
+        @Override
+        protected ObservableList<DTOAllPatientsView> call() {
+            return FXCollections.observableArrayList(patientWardService.getAllPatientsView());
+        }
     }
 }

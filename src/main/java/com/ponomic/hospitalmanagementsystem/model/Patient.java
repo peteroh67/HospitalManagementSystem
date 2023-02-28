@@ -3,23 +3,16 @@ package com.ponomic.hospitalmanagementsystem.model;
 import java.time.LocalDate;
 
 public class Patient {
-
-    private String healthNumber;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
     private PatientType patientType;
 
-    public Patient(String healthNumber, String firstName, String lastName, LocalDate dateOfBirth, PatientType patientType) {
+    public Patient(String firstName, String lastName, LocalDate dateOfBirth, PatientType patientType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.patientType = patientType;
-        this.healthNumber = healthNumber;
-    }
-
-    public String getHealthNumber() {
-        return healthNumber;
     }
 
     public LocalDate getDateOfBirth() {

@@ -1,4 +1,4 @@
 package com.ponomic.hospitalmanagementsystem.dataaccess;
 
-public class PatientTypesDAOImpl {
+public class PatientTypesDAOImpl implements PatientTypesDAO{
 }

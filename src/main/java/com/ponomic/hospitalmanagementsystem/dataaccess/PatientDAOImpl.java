@@ -1,5 +1,6 @@
 package com.ponomic.hospitalmanagementsystem.dataaccess;
 
+import com.ponomic.hospitalmanagementsystem.dtos.DTOAllPatientsView;
 import com.ponomic.hospitalmanagementsystem.model.Patient;
 import com.ponomic.hospitalmanagementsystem.model.PatientType;
 import javafx.collections.FXCollections;
@@ -33,7 +34,8 @@ public class PatientDAOImpl implements PatientDAO {
         }
     }
 
-    ObservableList<Patient> patientList;
+    private ObservableList<Patient> patientList;
+    private ObservableList<DTOAllPatientsView> allPatientsViewList;
 
     public PatientDAOImpl(){
         patientList = FXCollections.observableArrayList();
@@ -41,12 +43,26 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public List<Patient> readAllPatients() {
-        return null;
+
+        String query = "SELECT " +  Schema.COLUMN_PATIENT_TYPES_PATIENT_TYPE +"";
+
+        try (PreparedStatement statement = conn.prepareStatement(query);
+             ResultSet results = statement.executeQuery()){
+
+            readPatientsFromResultSet(results);
+
+        } catch (SQLException | NullPointerException exception) {
+            System.err.println("Could not read data : " + exception.getMessage());
+            exception.getStackTrace();
+            return null;
+        }
+        return this.patientList;
     }
 
 
     @Override
     public Patient readPatientByID(int patientID) {
+
         return null;
     }
 
@@ -58,10 +74,9 @@ public class PatientDAOImpl implements PatientDAO {
             while (resultSet.next()){
 
                 PatientType patientType = PatientType.MALE;
-                LocalDate dob = LocalDate.parse(resultSet.getString("DateOfBirth"), Schema.DATE_FORMATTER);
+                LocalDate dob = LocalDate.parse(resultSet.getString("date_of_birth"), Schema.DATE_FORMATTER);
 
                 Patient patient = new Patient(
-                        resultSet.getString(Schema.COLUMN_PATIENTS_HEALTH_NUMBER),
                         resultSet.getString(Schema.COLUMN_PATIENTS_FIRST_NAME),
                         resultSet.getString(Schema.COLUMN_PATIENTS_LAST_NAME),
                         dob,
@@ -74,7 +89,6 @@ public class PatientDAOImpl implements PatientDAO {
         }
         return true;
     }
-
 
     @Override
     public int insertPatient(Patient patient) {
@@ -108,6 +122,8 @@ public class PatientDAOImpl implements PatientDAO {
 
         String dob = Schema.DATE_FORMATTER.format(patient.getDateOfBirth());
         String queryForPatientTypeID = getPatientTypeIDQuery(patient);
+
+
 
         String queryInsertPatient = "INSERT INTO " + Schema.TABLE_PATIENTS +
                 "VALUES ('" + queryForPatientTypeID +
@@ -150,6 +166,36 @@ public class PatientDAOImpl implements PatientDAO {
         return updateOrDelete(query);
     }
 
+    @Override
+    public List readAllPatientsView() {
+
+        allPatientsViewList.removeAll();
+
+        try (PreparedStatement statement = conn.prepareStatement(Schema.QUERY_READ_ALL_PATIENTS_VIEW);
+             ResultSet results = statement.executeQuery()){
+
+            while (results.next()){
+                LocalDate dob = LocalDate.parse(results.getString("date_of_birth"), Schema.DATE_FORMATTER);
+
+                DTOAllPatientsView dto = new DTOAllPatientsView(
+                        results.getString(Schema.COLUMN_PATIENTS_FIRST_NAME),
+                        results.getString(Schema.COLUMN_PATIENTS_LAST_NAME),
+                        results.getString(Schema.COLUMN_PATIENTS_DATE_OF_BIRTH), // don't need to convert to String as it is just being displayed in view
+                        results.getString(Schema.COLUMN_TEAM_NAME),
+                        results.getString(Schema.COLUMN_WARDS_NAME)
+                );
+                allPatientsViewList.add(dto);
+            }
+
+            return allPatientsViewList;
+
+        } catch (SQLException | NullPointerException exception) {
+            System.err.println("Could not read data : " + exception.getMessage());
+            exception.getStackTrace();
+        }
+        return null;
+    }
+
     private String getDeletePatientQuery(Patient patient){
         String patientID = getPatientIDQuery(patient);
         String query = "DELETE FROM " + Schema.TABLE_PATIENTS +
@@ -177,8 +223,12 @@ public class PatientDAOImpl implements PatientDAO {
 
         String queryForID = "(SELECT " + Schema.COLUMN_PATIENTS_ID +
                 " FROM " + Schema.TABLE_PATIENTS +
-                " WHERE " + Schema.COLUMN_PATIENTS_HEALTH_NUMBER +
-                " = " + patient.getHealthNumber() + ")";
+                " WHERE " + Schema.COLUMN_PATIENTS_FIRST_NAME +
+                " = " + patient.getFirstName() +
+                " AND " + Schema.COLUMN_PATIENTS_LAST_NAME +
+                " = " + patient.getLastName() +
+                " AND " + Schema.COLUMN_PATIENTS_DATE_OF_BIRTH +
+                " = " + patient.getDateOfBirth() + ")";
         return queryForID;
     }
 

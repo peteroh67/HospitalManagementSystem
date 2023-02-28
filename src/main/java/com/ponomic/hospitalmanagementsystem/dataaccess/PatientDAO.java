@@ -11,5 +11,5 @@ public interface PatientDAO {
     public int insertPatient(Patient patient);
     public boolean updatePatient(Patient patient);
     public boolean deletePatient(Patient patient);
-
+    List readAllPatientsView();
 }
