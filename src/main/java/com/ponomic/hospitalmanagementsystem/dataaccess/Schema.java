@@ -125,6 +125,12 @@ public class Schema {
                     " ON " + TABLE_PATIENTS + "." + COLUMN_PATIENTS_PATIENT_TYPE +
                     " = " + TABLE_PATIENT_TYPES + "." + COLUMN_PATIENT_TYPES_ID;
 
+    public static final String QUERY_FILTER_BY_WARD =
+            " WHERE " + TABLE_WARDS + "." + COLUMN_WARDS_ID + " = ?";
+
+    public static final String  QUERY_FILTER_BY_TEAM =
+            " WHERE " + TABLE_TEAM + "." + COLUMN_TEAM_ID + " = ?";
+
     public static final String QUERY_READ_ALL_PATIENTS_VIEW =
             "SELECT " + TABLE_PATIENT_TYPES + "." + COLUMN_PATIENT_TYPES_PATIENT_TYPE + ", " +
                     TABLE_PATIENTS +"." + COLUMN_PATIENTS_FIRST_NAME + ", " +
@@ -145,5 +151,28 @@ public class Schema {
                         " ON " + TABLE_WARDS + "." + COLUMN_WARDS_ID +
                         " = " + TABLE_PATIENTS_WARDS_BED + "." + COLUMN_PATIENTS_WARDS_BEDS_WARD;
 
+    public static final  String QUERY_UPDATE_PATIENT =
+            "UPDATE patients " +
+            " SET " + COLUMN_PATIENTS_PATIENT_TYPE + " = ?," +
+            COLUMN_PATIENTS_FIRST_NAME + " = ?," +
+            COLUMN_PATIENTS_LAST_NAME + " = ?," +
+            COLUMN_PATIENTS_DATE_OF_BIRTH + " = ?" +
+            " WHERE " + COLUMN_PATIENTS_ID + " = ?";
 
+    public static final String QUERY_DELETE_PATIENT =
+            "DELETE FROM " + TABLE_PATIENTS +
+            " WHERE " + COLUMN_PATIENTS_ID + " = ?";
+
+    public static final String QUERY_INSERT_PATIENT =
+            "INSERT INTO " + TABLE_PATIENTS +
+                    " (" + COLUMN_PATIENTS_PATIENT_TYPE +
+                    ", " + COLUMN_PATIENTS_FIRST_NAME +
+                    ", " + COLUMN_PATIENTS_LAST_NAME +
+                    ", " + COLUMN_PATIENTS_DATE_OF_BIRTH +") " +
+            "VALUES ('?, ?, ?, ?)";
+
+    public static final String QUERY_PATIENT_TYPE_ID =
+            "SELECT " + COLUMN_PATIENT_TYPES_ID +
+                    " FROM " + TABLE_PATIENT_TYPES +
+                    " WHERE " + COLUMN_PATIENT_TYPES_PATIENT_TYPE + " = ?";
 }

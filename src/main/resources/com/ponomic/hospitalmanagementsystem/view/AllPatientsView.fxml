@@ -35,6 +35,8 @@
             </padding>
             <Button text="Admit Patient" fx:id="btnAdmitPatient" onAction="#onButtonClick" styleClass="button" GridPane.rowIndex="0" GridPane.columnIndex="0" />
             <Button text="View Patients" fx:id="btnViewPatients" onAction="#onButtonClick" styleClass="button" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <Button text="Home" fx:id="btnHome" onAction="#onButtonClick" styleClass="button" GridPane.rowIndex="0" GridPane.columnIndex="3" />
+
         </GridPane>
     </center>
 </BorderPane>

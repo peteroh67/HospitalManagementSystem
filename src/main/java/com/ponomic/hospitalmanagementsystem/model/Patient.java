@@ -7,12 +7,21 @@ public class Patient {
     private String lastName;
     private LocalDate dateOfBirth;
     private PatientType patientType;
+    private int ID;
 
     public Patient(String firstName, String lastName, LocalDate dateOfBirth, PatientType patientType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.patientType = patientType;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public LocalDate getDateOfBirth() {
